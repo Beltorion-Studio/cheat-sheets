@@ -1,4 +1,4 @@
-# SSL Certificates Cheat-Sheet
+# SSL/TLS Certificates
 
 X.509 is an ITU standard defining the format of public key certificates. X.509 are used in TLS/SSL, which is the basis for HTTPS. An X.509 certificate binds an identity to a public key using a digital signature. A certificate contains an identity (hostname, organization, etc.) and a public key (RSA, DSA, ECDSA, ed25519, etc.), and is either signed by a Certificate Authority or is Self-Signed.
 
@@ -12,6 +12,12 @@ openssl genrsa -aes256 -out ca-key.pem 4096
 2. Generate a public CA Cert
 ```bash
 openssl req -new -x509 -sha256 -days 365 -key ca-key.pem -out ca.pem
+```
+
+### Optional Stage: View Certificate's Content
+```bash
+openssl x509 -in ca.pem -text
+openssl x509 -in ca.pem -purpose -noout -text
 ```
 
 ### Generate Certificate
